@@ -12,7 +12,12 @@ class TransactionsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
-
+    if (element !== undefined){
+      this.element = element;
+      this.registerEvents();
+    }
+    else
+    return new Error('Необходимо передать параметр element');
   }
   /**
    * Регистрирует обработчики нажатия на
@@ -21,6 +26,12 @@ class TransactionsWidget {
    * экземпляра окна
    * */
   registerEvents() {
+    this.element.querySelector('.create-income-button').onclick = e => { 
+      App.getModal('newIncome').open();
+    }
 
+    this.element.querySelector('.create-expense-button').onclick = e => { 
+      App.getModal('newExpense').open();
+    }
   }
 }

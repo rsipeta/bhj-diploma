@@ -12,7 +12,11 @@ class UserWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor(element){
-
+    if (element !== undefined){
+      this.element = element;
+    }
+    else
+      return new Error('Необходимо передать параметр element');
   }
 
   /**
@@ -23,6 +27,9 @@ class UserWidget {
    * авторизованного пользователя
    * */
   update(){
-
+    const user = User.current();
+    if (user) {
+        this.element.querySelector('.user-name').innerText = user.name;
+    }
   }
 }
